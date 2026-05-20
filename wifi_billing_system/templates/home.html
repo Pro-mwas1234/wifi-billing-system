@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block title %}Home - WiFi Billing System{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Fast & Reliable WiFi Billing Solution</h1>
+                <p class="lead text-muted mb-4">Manage your WiFi subscriptions, track usage, and pay bills seamlessly with our modern billing platform.</p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg px-4 me-md-2">
+                        <i class="fas fa-user-plus"></i> Get Started
+                    </a>
+                    <a href="{{ url_for('login') }}" class="btn btn-outline-secondary btn-lg px-4">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center mt-5 mt-lg-0">
+                <i class="fas fa-wifi fa-10x text-primary opacity-50"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5">Why Choose Us?</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 text-center p-4">
+                    <div class="card-body">
+                        <i class="fas fa-tachometer-alt fa-3x text-primary mb-3"></i>
+                        <h4 class="card-title">High Speed</h4>
+                        <p class="card-text text-muted">Experience blazing fast internet speeds with our premium packages designed for all your needs.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 text-center p-4">
+                    <div class="card-body">
+                        <i class="fas fa-shield-alt fa-3x text-success mb-3"></i>
+                        <h4 class="card-title">Secure Payment</h4>
+                        <p class="card-text text-muted">Your transactions are protected with industry-standard encryption and security measures.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 text-center p-4">
+                    <div class="card-body">
+                        <i class="fas fa-headset fa-3x text-info mb-3"></i>
+                        <h4 class="card-title">24/7 Support</h4>
+                        <p class="card-text text-muted">Our dedicated support team is always available to help you with any issues or questions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing Preview -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5">Popular Packages</h2>
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="card pricing-card text-center h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Basic</h5>
+                        <h3 class="text-primary my-3">$9.99<span class="text-muted fs-6">/month</span></h3>
+                        <ul class="list-unstyled mb-4">
+                            <li><i class="fas fa-check text-success"></i> 5 Mbps Speed</li>
+                            <li><i class="fas fa-check text-success"></i> 50 GB Data</li>
+                            <li><i class="fas fa-check text-success"></i> 1 Device</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card pricing-card text-center h-100 featured">
+                    <div class="card-body">
+                        <h5 class="card-title">Standard</h5>
+                        <h3 class="text-primary my-3">$19.99<span class="text-muted fs-6">/month</span></h3>
+                        <ul class="list-unstyled mb-4">
+                            <li><i class="fas fa-check text-success"></i> 10 Mbps Speed</li>
+                            <li><i class="fas fa-check text-success"></i> 150 GB Data</li>
+                            <li><i class="fas fa-check text-success"></i> 3 Devices</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card pricing-card text-center h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Premium</h5>
+                        <h3 class="text-primary my-3">$39.99<span class="text-muted fs-6">/month</span></h3>
+                        <ul class="list-unstyled mb-4">
+                            <li><i class="fas fa-check text-success"></i> 25 Mbps Speed</li>
+                            <li><i class="fas fa-check text-success"></i> Unlimited Data</li>
+                            <li><i class="fas fa-check text-success"></i> 5 Devices</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card pricing-card text-center h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Family</h5>
+                        <h3 class="text-primary my-3">$59.99<span class="text-muted fs-6">/month</span></h3>
+                        <ul class="list-unstyled mb-4">
+                            <li><i class="fas fa-check text-success"></i> 50 Mbps Speed</li>
+                            <li><i class="fas fa-check text-success"></i> Unlimited Data</li>
+                            <li><i class="fas fa-check text-success"></i> 10 Devices</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-5">
+            <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">View All Packages</a>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-primary text-white">
+    <div class="container text-center">
+        <h2 class="mb-4">Ready to Get Started?</h2>
+        <p class="lead mb-4">Join thousands of satisfied customers enjoying high-speed internet today!</p>
+        <a href="{{ url_for('register') }}" class="btn btn-light btn-lg px-5">Create Free Account</a>
+    </div>
+</section>
+{% endblock %}

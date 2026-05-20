@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}My Invoices - WiFi Billing System{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="fw-bold"><i class="fas fa-file-invoice"></i> My Invoices</h2>
+            <p class="text-muted">View and manage your billing history</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    {% if invoices %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Invoice ID</th>
+                                    <th>Date Created</th>
+                                    <th>Due Date</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Payment Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for invoice in invoices %}
+                                <tr>
+                                    <td>#{{ invoice.id }}</td>
+                                    <td>{{ invoice.created_at.strftime('%Y-%m-%d') }}</td>
+                                    <td>{{ invoice.due_date.strftime('%Y-%m-%d') }}</td>
+                                    <td><strong>${{ "%.2f"|format(invoice.amount) }}</strong></td>
+                                    <td>
+                                        {% if invoice.status == 'paid' %}
+                                        <span class="badge bg-success">Paid</span>
+                                        {% elif invoice.status == 'pending' %}
+                                        <span class="badge bg-warning">Pending</span>
+                                        {% else %}
+                                        <span class="badge bg-danger">Overdue</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ invoice.payment_date.strftime('%Y-%m-%d') if invoice.payment_date else '-' }}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary" onclick="alert('Invoice download feature coming soon!')">
+                                            <i class="fas fa-download"></i> Download
+                                        </button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Summary Cards -->
+                    <div class="row g-3 mt-4">
+                        <div class="col-md-4">
+                            <div class="card stat-card success">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-muted mb-1">Total Paid</h6>
+                                        <h3 class="mb-0 text-success">${{ "%.2f"|format(invoices|selectattr('status', 'equalto', 'paid')|map(attribute='amount')|sum) }}</h3>
+                                    </div>
+                                    <i class="fas fa-check-circle fa-2x text-success opacity-50"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card stat-card warning">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-muted mb-1">Pending</h6>
+                                        <h3 class="mb-0 text-warning">${{ "%.2f"|format(invoices|selectattr('status', 'equalto', 'pending')|map(attribute='amount')|sum) }}</h3>
+                                    </div>
+                                    <i class="fas fa-clock fa-2x text-warning opacity-50"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card stat-card">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-muted mb-1">Total Invoices</h6>
+                                        <h3 class="mb-0">{{ invoices|length }}</h3>
+                                    </div>
+                                    <i class="fas fa-file-invoice fa-2x text-primary opacity-50"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% else %}
+                    <div class="text-center py-5">
+                        <i class="fas fa-file-invoice fa-5x text-muted mb-3"></i>
+                        <h4>No Invoices Found</h4>
+                        <p class="text-muted">You don't have any invoices yet. Subscribe to a package to get started.</p>
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-primary">
+                            <i class="fas fa-arrow-left"></i> Go to Dashboard
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
